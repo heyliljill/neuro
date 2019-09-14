@@ -1,0 +1,29 @@
+What I want this data analysis to look like:
+
+1. In ImageJ, open file.
+    a. Measure x, y for molecular boundary
+    b. Measure x, y for hilus boundary
+    c. Measure x, y for each cell
+2. Export x, y to matlab
+    a. For molecular boundary x, y - polynomial fit (8th order?) ** test which minimizes residual
+    b. For hilus boundary x,y - polynomial fit
+    c. Calculate shortest line connecting each point and both boundaries
+        - Do this by:
+        - Initialize by finding shortest path to either one boundary
+        - Extend that path to connect to other boundary
+        - Calculate total distance
+        - Change path to one that is one unit to the left and repeat
+        - If distance is shorter, change the shortest total distance and the path
+        - Go up to 50 units to left and 50 units to the right
+3. Final data should look like:
+    Slice | Cell | X coord | Y Coord | boundary1 X,Y coord | boundary2 X,Y coord | total distance | distance to boundary1 |  % distance to boundary1 | activating or no?
+    
+4. Analyze for % distance to boundary1, and activating or not
+
+
+
+New idea for data analysis:
+    Divide up each boundary between start point and end point 1000 times or so and find line connect point 1 on boundary a to point 1 on boundary b all the way to point 1000
+    Use these as lines and find line that point is nearest to
+    Use the nearest point on that line as point to measure distance
+    - note: how to deal with end points? may go off image...
